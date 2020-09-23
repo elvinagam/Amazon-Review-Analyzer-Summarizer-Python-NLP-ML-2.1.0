@@ -1,0 +1,213 @@
+{% load static %}
+<html>
+<head>
+	<title>Review Analyzer</title>
+	<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" /> -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"/>
+	<link rel="stylesheet" type="text/css" href="{% static 'analyzer/home.css' %}"/>
+</head>
+<body>
+	<div id="header">
+      <div class="header-logo">
+        <div class="header-logo-left">
+            <i class="fab fa-facebook-f"></i>
+            <i class="fab fa-twitter"></i>
+            <i class="fab fa-pinterest-p"></i>
+            <i class="fas fa-fire"></i>
+        </div>
+        <div class="header-logo-right">
+            <a href="#"><div class="">SUPPORT</div></a>
+            {% if user.is_authenticated %}
+							<a class="" href="{% url 'profile' %}"><div>{{ user.username.capitalize }}</div></a>
+							<a class="" href="{% url 'logout' %}"><div>LOGOUT</div></a>
+						{% else %}
+							<a class="" href="{% url 'login' %}"><div>LOGIN</div></a>
+							<a class="" href="{% url 'register' %}"><div>REGISTER</div></a>
+						{% endif %}
+        </div>
+      </div>
+      <div class="header-anchors">
+        <div class="header-anchor-left">
+          <div>Review Analyzer</div>
+          <a href="#">HOMEPAGES</a>
+          <a href="#">SERVICES</a>
+          <a href="#">FEATURES</a>
+          <a href="#">SHOP</a>
+          <a href="#">PAGES</a>
+          <a href="#">MORE</a>
+          <p></p>
+        </div>
+    </div>
+    <div class="header-main">
+        <div id="menu-lines">
+        </div>
+        <h1>Review Analyzer is A CUTTING EDGE TOOL THAT WILL <b>SAVE YOUR TIME</b></h1>
+        <hr />
+        <p class="header-main-p">An Analyzer to be loved by all customers !</p>
+        <div>
+		    <form method="POST">
+					{% csrf_token %}
+					<input id="url" type="text" name="p_url" placeholder="Paste Product Link Here" required="required">
+					<input id = "analyze" type="submit" name="submit" value="Analyze">
+				</form>
+			</div>
+    </div>
+</div>
+{%if p_summary%}
+	<div id="artwork" style="align: center;">
+		<div class="container">
+				<img src="{{ p_img_link }}" alt="{{ p_name }}" style=" margin: 50px 0px 50px 50px;">
+				<a href="{{ p_url }}" target="_blank" style=" width: 70%;float: right; margin: 30px 150px 0px 0px;"><h3>{{p_name_desc}}</h3></a>
+		</div>
+		<div class="container"  style="padding-bottom: 50px;">
+				<ul class="info1" style="list-style: none; margin-left: 10px;">
+					<li>Analyzed on Amazon</li>
+					<li>Total Reviews: {{ p_review_count }}</li>
+					<li>Suspicious Reviews: {{ p_fakereview_count }}</li>
+					<li>Amazon Rate: {{ p_rate }}</li>
+					<li>Our Rate: {{ p_found_rate }}</li>
+				</ul>
+				<label for="p_sum" style="margin: 0px 0px 0px 50px;"><h4 >SUMMARY:</h4></label>
+				<p id="p_sum" style="margin: 0px 0px 0px 50px;">{{ p_summary }}</p>
+		</div>
+		<!-- <h3>PRODUCT REVIEW SUMMARY</h3> -->
+		<!-- <p>Amazon Rate: {{ p_rate }}</p> -->
+		<!-- <p>Our Rate: {{ p_found_rate }}</p> -->
+		<!-- <p>Total Review Count: {{ p_review_count }}</p> -->
+		<!-- <p>Fake Review Count: {{ p_fakereview_count }}</p> -->
+		<!-- <img src="{{ p_img_link }}" alt=""> -->
+		<!-- <a href="{{ p_url }}" target="_blank"><p>Name: {{ p_name }}</p></a> -->
+		{% for star in stars %}
+		<p>Star : {{ star }}</p>
+		{% endfor %}
+		<!-- <p>Summary: {{ p_summary }}</p> -->
+	</div>
+{%endif%}
+<div id="services" style="height: 800px;">
+		<div class="services-top-div">
+			<img src="{% static 'analyzer/img/services-top-image.png'%}" class="positioned-top" />
+			<hr style="width: 60px; float: left; height: 2px; background-color: #c3c3c3; margin-bottom: 20px;" />
+			<p id="services-p-1">This is a rich, featured, epic Analyzer Tool for Reviews from online shopping centers such as,<b>Amazon and Alixpress </b>destined for the typical modern website that needs to stand out.</p>
+			<p id="services-p-2">Currently one of the best selling used amoong other tools, featured across the marketplace and awarded with thousands of 5 stars ratings.</p>
+		</div>
+		<div class="services-medium-div" style="height: 200px;">
+			<div class="services-divs">
+				<img src="{% static 'analyzer/img/services-image1.png'%}"/>
+				<h3>Graphs</h3>
+				<p>developing a web site for the Internet or an intranet ranging from developing a simple single static page of plain text to complex web-based internet applications
+				</p>
+				<ul>
+					<li>Content management systems</li>
+					<li>User Friendly Design</li>
+					<li>Application of HTML, CSS, Django</li>
+				</ul>
+			</div>
+			<div class="services-divs">
+				<img src="{% static 'analyzer/img/services-image2.png'%}" />
+				<h3>Bar charts and Line graphs</h3>
+				<p>AI
+				</p>
+			</div>
+			<div class="services-divs">
+				<img src="{% static 'analyzer/img/services-image3.png'%}"/>
+				<h3>Sentiment Analysis and Summarizing System</h3>
+				<p>Analysis of reviews</p>
+			</div>
+		</div>
+		<a class="ad_service" href="https://ads.google.com/home/" target="_blank"><img src="{% static 'analyzer/img/adsense.gif' %}" alt="ads"/></a>
+	</div>
+	<div id="technologies">
+		<h2>BELOVED REVIEWS & TECHNOLOGIES</h2>
+		<hr id="hr-1" />
+		<div class="technologies-medium-div">
+			<div class="technologies-medium-div1">
+				<img src="{% static 'analyzer/img/technologies-image1.png'%}" id="tech-img-1" />
+				<p id="tech-p-1">dddLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed cursus sollicitudin odio, eu tempor velit pellentesque et lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed cursus sollicitudin odio, eu tempor velit pellentesque et</p>
+				<img src="{% static 'analyzer/img/technologies-image4.png'%}" class="technologies-image-pos" id="tech-img-2" />
+				<h3>CARLETON ISSAC</h3>
+				<p id="tech-p-2">General Manager</p>
+				<!-- STARS -->
+				<img src="{% static 'analyzer/img/stars.png'%}" style="margin-left: 20px;">
+			</div>
+			<div class="technologies-medium-div2">
+				<img src="{% static 'analyzer/img/technologies-image2.png'%}" id="tech-img-3" />
+				<p id="tech-p-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed cursus sollicitudin odio, eu tempor velit pellentesque et lorem ipsum dolor sit amet
+				</p>
+				<h3>CARLETON ISSAC</h3>
+				<p id="tech-p-4">General Manager</p>
+				<img src="{% static 'analyzer/img/stars.png'%}"/>
+			</div>
+			<div class="technologies-medium-div3">
+				<h3>CARLETON ISSAC</h3>
+				<p id="tech-p-5">Hollywood Magazine</p>
+				<img src="{% static 'analyzer/img/technologies-image3.png'%}" />
+				<p id="tech-p-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed cursus sollicitudin odio, eu tempor velit pellentesque et lorem ipsum dolor sit amet
+				</p>
+			</div>
+		</div>
+		<hr style="margin-top: 43px; margin-bottom: 50px; background-color: #4e4e4e;color: #4e4e4e;" />
+		<p id="footer-p">TECHNOLOGIES</p>
+		<hr style="clear: left; float: left; width: 5%; height: 2px; background-color: #fff;" />
+		<img src="{% static 'analyzer/img/footer-image1.png'%}" class="footer-image" />
+		<img src="{% static 'analyzer/img/footer-image2.png'%}" class="footer-image" />
+		<img src="{% static 'analyzer/img/footer-image3.png'%}" class="footer-image" />
+		<img src="{% static 'analyzer/img/footer-image4.png'%}" class="footer-image" />
+		<img src="{% static 'analyzer/img/footer-image5.png'%}"  />
+  </div>
+	<div id="footer">
+		<div class="footer-top">
+			<div class="footer-top-div1">
+				<h3>FOOTER MENU</h3>
+				<ul style="float: left;">
+					<li>Analyzer</li>
+					<li>Services </li>
+					<li>Blog</li>
+					<li>Features</li>
+					<li>About us</li>
+				</ul>
+				<ul>
+					<li>Data Visualization</li>
+					<li>Machine Learning Models</li>
+					<li>Posts</li>
+					<li>Articles</li>
+					<li>Favorites</li>
+				</ul>
+			</div>
+			<div class="footer-top-div2">
+				<h3>NEWSLETTER SIGNUP</h3>
+				<p>By subscribing to our mailing list you will always be update with the latest news from us.</p>
+				<form>
+					<input type="email" name="email_name" placeholder="your.address@email.com" required="required">
+					<input type="submit" name="submit" value="JOIN US">
+				</form>
+			</div>
+			<div class="footer-top-div3">
+				<h3>GET IN TOUCH</h3>
+				<div class="footer-top-div">T: (+99450) 996 88 91</div>
+				<div class="footer-top-div" style="margin-bottom: 40px;">Email:reviewanalyze@gmail.com</div>
+				<div class="footer-buttom-div">ETTE LTD</div>
+				<div class="footer-buttom-div">BAKU, AZerbaijan</div>
+				<img src="{% static 'analyzer/img/footer-gps.jpg'%}" style="float: left;" />
+				<!-- change -->
+				<a class = "footer-button-div" href= ""><div class="footer-buttom-div"><img src="" />Open in Google Maps</div></a>
+			</div>
+		</div>
+		<div class="footer-bottom">
+          	<div class="footer-bottom-div1">
+	        <h3><b>REVIEW</b><br /><div>ANALYZER</div></h3>
+	        <p>&copy; 2019 All rights reserved <span style="color:#fff;">ETTE TEAM</span></p>
+      	</div>
+      	<div class="footer-bottom-div2">
+	     	<p>GET SOCIAL</p>
+	        <i class="fab fa-facebook-f"></i>
+	        <i class="fab fa-twitter"></i>
+	        <i class="fab fa-pinterest-p"></i>
+	        <i class="fas fa-fire"></i>
+	        <a href="#">
+				<img src="{% static 'analyzer/img/footer-top-link.png'%}"/>
+			</a>
+      	</div>
+    </div>
+  </div>
+</body>
+</html>
