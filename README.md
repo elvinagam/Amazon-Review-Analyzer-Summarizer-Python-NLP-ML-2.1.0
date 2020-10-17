@@ -1,6 +1,8 @@
 #Amazon-Review-Analyzer-Summarizer-Python-NLP-ML-
 # Hands-on Medium Deep learning Applications in real-case, Amazon reviews
 
+AI Based Review-Feedback Analyzer which aims to eliminate time waste of customers while reading reviews of products to buy. We will use an AI based software to make summaries of thousands of reviews by clearly pointing out merits and demerits of any product. Customers will be able to read the summaries of a myriad of reviews in a minute and choose the preferable product by putting less effort and spending less time on. In detail, all work done about this project is included here till now, which covers initial research, surveys and interviews. According to the results of them, list of requirements, relevant diagrams – WBS, Gantt Chart, CPM, PERT Chart and Context Model, Activity, Use Case and Sequence, Class and E-R Diagrams is composed.
+
 # Medium ML Application from Models to Scraping Technics
 Opensourced: Added Advanced summarization technics such as Bag of Words model
 ## Used Python Libraries
